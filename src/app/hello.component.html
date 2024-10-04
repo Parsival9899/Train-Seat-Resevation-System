@@ -1,0 +1,26 @@
+<div>
+  <h1>Train Seat Reservation System</h1>
+
+  <!-- Input for number of seats -->
+  <label for="seats">Number of Seats to Book:</label>
+  <input type="number" id="seats" #seatInput min="1" max="7" />
+  <button (click)="onBookSeats(seatInput.value)">Book Seats</button>
+
+  <!-- Display booking status -->
+  <div>
+    <h3>Booking Status:</h3>
+    <p><strong>Booked Seats:</strong> {{ bookedCount }}</p>
+    <p><strong>Remaining Seats:</strong> {{ remainingCount }}</p>
+  </div>
+
+  <!-- Display all seats with availability status -->
+  <div class="seat-chart">
+    <div
+      *ngFor="let seat of getSeats()"
+      [ngStyle]="{ 'background-color': seat.isBooked ? 'red' : 'green' }"
+      class="seat"
+    >
+      {{ seat.seatNumber }}
+    </div>
+  </div>
+</div>
